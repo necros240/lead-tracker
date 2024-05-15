@@ -5,6 +5,7 @@ const ulEl = document.getElementById("ul-el")
 const deleteBtn = document.getElementById("delete-btn")
 const leadsFromLocalStorage = JSON.parse( localStorage.getItem("myLeads") )
 const tabBtn = document.getElementById("tab-btn")
+const lockEmojiEl = document.getElementById("lock-el")
 
 if (leadsFromLocalStorage) {
     myLeads = leadsFromLocalStorage
@@ -16,6 +17,7 @@ tabBtn.addEventListener("click", function(){
         myLeads.push(tabs[0].url)
         localStorage.setItem("myLeads", JSON.stringify(myLeads) )
         render(myLeads)
+        showLockEmoji()
     })
 })
 
@@ -44,4 +46,13 @@ inputBtn.addEventListener("click", function() {
     inputEl.value = ""
     localStorage.setItem("myLeads", JSON.stringify(myLeads) )
     render(myLeads)
+    showLockEmoji()
 })
+
+function showLockEmoji() {
+    lockEmojiEl.style.opacity = 1
+    setTimeout( function() {
+        lockEmojiEl.style.opacity = 0
+    }, 1000)
+
+}
